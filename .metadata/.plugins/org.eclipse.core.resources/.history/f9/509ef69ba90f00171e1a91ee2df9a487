@@ -1,0 +1,109 @@
+package gui;
+
+import java.awt.BorderLayout;
+import java.awt.Canvas;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.crypto.SecretKeyFactorySpi;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GraphicTest extends JFrame{
+	
+	JLabel lb_path;
+	Canvas can;
+	JPanel   p_north, p_south;
+	JButton  bt_prev, bt_next;
+	int count=0;
+	Toolkit  kit;
+	Image  img;
+	String[] path = {
+			"C:/html_workspace/images/p1.jpg"
+		   ,"C:/html_workspace/images/p2.jpg"
+		   ,"C:/html_workspace/images/p3.jpg"
+		   ,"C:/html_workspace/images/p4.jpg"
+	};
+	
+		
+	public GraphicTest() {
+		lb_path = new JLabel("path");
+		p_north = new JPanel();
+		p_south = new JPanel();
+		bt_prev = new JButton("prev");
+		bt_next = new JButton("next");
+		
+		kit = kit.getDefaultToolkit();		
+		img = kit.getImage(path[count]);
+		
+		lb_path.setText(path[count]);
+		
+		can = new Canvas(){
+			public void paint(Graphics g) {
+				
+				g.drawImage(img, 0, 0, this.getWidth(), this.getHeight(), this);
+				//repaint();
+			}
+		};
+		
+		// 이전 버튼
+		bt_prev.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				next();				
+			}
+		});
+		
+		// 다음 버튼
+		bt_next.addActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				next();
+			}
+		});
+		
+		// north
+		p_north.add(lb_path);
+		
+		// center
+		
+		// south
+		p_south.add(bt_prev);
+		p_south.add(bt_next);
+		
+		this.add(p_north, BorderLayout.NORTH);
+		this.add(can, BorderLayout.CENTER);
+		this.add(p_south, BorderLayout.SOUTH);
+		
+		setSize(600, 650);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public void prev(){
+		if (count > path.length){
+		count--;
+		img = kit.getImage(path[count]);
+		can.repaint();
+		}
+	}
+	
+	public void next(){
+		if (count > path.length){
+		count++;
+		img = kit.getImage(path[count]);
+		can.repaint();
+		};
+	}
+
+	public static void main(String[] args) {
+		new GraphicTest();
+
+	}
+
+}

@@ -1,0 +1,21 @@
+package com.ss.gui;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class ButtonCreater {
+	
+	JButton  bt_create, bt_color;
+	JPanel     p_north, p_center;
+	
+	public ButtonCreater() {
+
+			setVisible(true);
+	}
+
+	public static void main(String[] args) {
+		new ButtonCreater();
+
+	}
+
+}

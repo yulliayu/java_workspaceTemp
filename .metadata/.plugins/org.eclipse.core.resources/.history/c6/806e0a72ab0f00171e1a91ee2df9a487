@@ -1,0 +1,34 @@
+package gui;
+
+import java.awt.Canvas;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+
+public class GraphicTest extends JFrame{
+	
+	JLabel lb_path;
+	JPanel  p_north, p_south;
+	Canvas  can;
+	JButton  bt_prev, bt_next;
+	
+	public GraphicTest() {
+		lb_path = new JLabel();
+		can = new Canvas();
+		bt_prev = new JButton("prev");
+		bt_next = new JButton("next");
+		p_north = new JPanel();
+		p_south = new JPanel();
+		
+		setBounds(100, 100, 600, 650);
+		setVisible(true);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+	}
+	
+	public static void main(String[] args){
+		new GraphicTest();
+	}
+
+}
